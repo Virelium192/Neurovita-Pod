@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoroVita Pod | Advanced Wellness Station</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-light: #818CF8;
+            --secondary: #10B981;
+            --secondary-light: #34D399;
+            --dark: #111827;
+            --light: #F9FAFB;
+            --gray: #6B7280;
+            --light-gray: #E5E7EB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(249, 250, 251, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 1.2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 3rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(79, 70, 229, 0.25);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 12rem 10% 6rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero-eyebrow {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-eyebrow::before {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+            margin-right: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1 span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 5px;
+            width: 100%;
+            height: 12px;
+            background: var(--secondary-light);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 3rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(79, 70, 229, 0.1);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+            }
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+        }
+
+        .pod-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .pod-shadow {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 20px;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            animation: shadow 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes shadow {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.2;
+            }
+            50% {
+                transform: translateX(-50%) scale(0.8);
+                opacity: 0.1;
+            }
+        }
+
+        .blob {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 550px;
+            height: 550px;
+            background: linear-gradient(45deg, rgba(79, 70, 229, 0.1), rgba(16, 185, 129, 0.1));
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            animation: blob-move 15s infinite alternate;
+        }
+
+        @keyframes blob-move {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(5%, 5%) scale(1.1);
+            }
+            66% {
+                transform: translate(-5%, 10%) scale(0.9);
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 10%;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 2rem auto 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--primary-light));
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            border-radius: 1rem;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-light);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            background: var(--primary);
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
+        }
+
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon svg {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            transition: color 0.3s ease;
+        }
+
+        .feature-card:hover h3 {
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Specifications Section */
+        .specifications {
+            padding: 6rem 10%;
+            background-color: var(--light);
+        }
+
+        .specs-container {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .specs-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .specs-image-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 70%;
+            overflow: hidden;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .specs-main-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 2rem;
+            transition: transform 0.5s ease;
+        }
+
+        .specs-image:hover .specs-main-image {
+            transform: scale(1.05);
+        }
+
+        .specs-content {
+            flex: 1;
+        }
+
+        .specs-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        .specs-list {
+            list-style: none;
+        }
+
+        .specs-item {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .specs-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .specs-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .specs-item p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 6rem 10%;
+            background: linear-gradient(135deg, var(--primary), #6366F1);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+
+        .experience-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .experience h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .experience p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .experience-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .experience-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .experience-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-card p {
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 6rem 10%;
+            background: var(--light);
+        }
+
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            margin: 0 auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .testimonial-quote-icon {
+            font-size: 3rem;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border: 4px solid var(--primary-light);
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+
+        .testimonial-role {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .testimonial-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 10%;
+            background: white;
+        }
+
+        .pricing-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .pricing-tier {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-tier.featured {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+            border: 2px solid var(--primary-light);
+        }
+
+        .pricing-tier.featured::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .pricing-tier:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-tier.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .pricing-header {
+            padding: 2rem;
+            text-align: center;
+            background: var(--light);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .pricing-tier.featured .pricing-header {
+            background: linear-gradient(45deg, var(--primary), var(--primary-light));
+            color: white;
+        }
+
+        .pricing-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-tier.featured .pricing-price {
+            color: white;
+        }
+
+        .pricing-period {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        .pricing-tier.featured .pricing-period {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .pricing-features {
+            padding: 2rem;
+        }
+
+        .pricing-feature-list {
+            list-style: none;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        .pricing-feature svg {
+            color: var(--primary);
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .pricing-cta {
+            padding: 0 2rem 2rem;
+            text-align: center;
+        }
+
+        .pricing-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background: var(--primary);
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-button:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(79, 70, 229, 0.25);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 10%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            text-align: center;
+            border-radius: 2rem;
+            margin: 4rem 10%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section .cta-button {
+            background: white;
+            color: var(--primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section .cta-button:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(50px);
+        }
+
+        .cta-blob-1 {
+            top: -100px;
+            left: -100px;
+        }
+
+        .cta-blob-2 {
+            bottom: -100px;
+            right: -100px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 10%;
+            background: var(--light);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-arrow {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer p {
+            color: var(--gray);
+            line-height: 1.6;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 5rem 10% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .footer-logo span {
+            color: var(--secondary);
+        }
+
+        .footer-about p {
+            color: #9CA3AF;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-newsletter p {
+            color: #9CA3AF;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 0.5rem 0 0 0.5rem;
+            outline: none;
+        }
+
+        .newsletter-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 0.5rem 0.5rem 0;
+            padding: 0 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .newsletter-button:hover {
+            background: var(--primary-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9CA3AF;
+            font-size: 0.9rem;
+        }
+
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 10rem 5% 5rem;
+                gap: 4rem;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-eyebrow {
+                justify-content: center;
+            }
+
+            .hero-eyebrow::before {
+                display: none;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .specs-container {
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .specs-image {
+                order: -1;
+                width: 100%;
+            }
+
+            .pricing-tier.featured {
+                transform: scale(1);
+            }
+
+            .pricing-tier.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1.2rem 5%;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .features, .specifications, .experience, .testimonials, .pricing, .faq {
+                padding: 4rem 5%;
+            }
+
+            .cta-section {
+                margin: 2rem 5%;
+                padding: 4rem 5%;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .cta-button, .secondary-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .testimonial-card {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo">Neoro<span>Vita</span></a>
+        <nav>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#specifications">Specifications</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+        <a href="#pricing" class="cta-button">Pre-Order Now</a>
+        <div class="mobile-menu-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="blob"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Premium Wellness Station</p>
+            <h1>NeoroVita <span>Wellness Pod</span></h1>
+            <p>Experience next-generation stress management in our immersive wellness station. Designed for clinics, offices, schools, and homes, the NeoroVita Pod combines biometric scanning with multi-sensory therapy to deliver a complete wellness experience in one elegant solution.</p>
+            <div class="hero-cta">
+                <a href="#pricing" class="cta-button">Pre-Order Now</a>
+                <a href="#features" class="secondary-btn">Explore Features</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-badge">Premium</div>
+            <div class="hero-image-container">
+                <img src="99D25BA0-77BD-417C-984E-66F42A53261C.jpeg" alt="NeoroVita Pod" class="pod-image">
+                <div class="pod-shadow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-title">
+            <h2>The Ultimate Wellness Experience</h2>
+            <p>The NeoroVita Pod combines advanced biometric scanning with multi-sensory interventions to create a holistic wellness experience that reduces stress and promotes mental clarity.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path>
+                    </svg>
+                </div>
+                <h3>Comprehensive Biometric Scanning</h3>
+                <p>Advanced sensors monitor heart rate variability, skin conductivity, breathing patterns, and more to create a complete picture of your current wellness state.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                </div>
+                <h3>Adaptive AI Wellness Assistant</h3>
+                <p>Our intelligent system learns your unique stress patterns and wellness needs, creating personalized interventions that become more effective over time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                    </svg>
+                </div>
+                <h3>Multi-Sensory Relaxation</h3>
+                <p>Experience immersive relaxation through scientifically calibrated light therapy, sound healing, aromatherapy, and gentle vibration technology.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                        <line x1="9" y1="21" x2="9" y2="9"></line>
+                    </svg>
+                </div>
+                <h3>Interactive Touch Display</h3>
+                <p>The intuitive interface guides you through personalized wellness programs, breathing exercises, meditation, and detailed biometric insights.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                </div>
+                <h3>Biometric Wellness Reports</h3>
+                <p>Receive comprehensive wellness insights after each session, tracking your progress and identifying areas for improvement in your stress management journey.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <h3>Multi-User Support</h3>
+                <p>Perfect for families, offices, and wellness centers, the pod recognizes and remembers multiple users, providing personalized experiences for everyone.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specifications Section -->
+    <section id="specifications" class="specifications">
+        <div class="specs-container">
+            <div class="specs-content">
+                <h2>Advanced Technology & Design</h2>
+                <ul class="specs-list">
+                    <li class="specs-item">
+                        <h3>Ergonomic Design</h3>
+                        <p>The pod features a premium ergonomic seat designed for optimal comfort during wellness sessions, supporting proper posture and relaxation.</p>
+                    </li>
+                    <li class="specs-item">
+                        <h3>Biometric Scanning</h3>
+                        <p>Equipped with high-precision sensors for heart rate variability, skin conductivity, respiration, body temperature, and optional glucose monitoring.</p>
+                    </li>
+                    <li class="specs-item">
+                        <h3>Multi-Sensory System</h3>
+                        <p>Integrated aromatherapy diffuser, bone-conduction sound system, chromotherapy lighting, and subtle vibrational therapy elements.</p>
+                    </li>
+                    <li class="specs-item">
+                        <h3>Smart Interface</h3>
+                        <p>12.9" touchscreen display with intuitive wellness app, voice control capabilities, and seamless mobile app integration.</p>
+                    </li>
+                    <li class="specs-item">
+                        <h3>Dimensions & Space</h3>
+                        <p>Compact footprint of 4.5' x 4.5' with a height of 5.5', requiring minimal space while creating an immersive experience.</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="specs-image">
+                <div class="specs-image-container">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiNGOUZBRkIiLz4KICA8IS0tIFBvZCBTaWRlIFZpZXcgLS0+CiAgPHBhdGggZD0iTTUwMCAzNTBDNTAwIDI3MCA0MDAgMjAwIDI1MCAyMDBDMTAwIDIwMCAwIDI3MCAwIDM1MFY2MDBINVZ2NTBWNjAwSDUwMFY1MDBWMzUwWiIgZmlsbD0iIzRGNDZFNSIvPgogIAogIDwhLS0gUG9kIEJhc2UgLS0+CiAgPHBhdGggZD0iTTAgNTAwQzAgNTAwIDEwMCA1NTAgMjUwIDU1MEM0MDAgNTUwIDUwMCA1MDAgNTAwIDUwMFY2MDBIMFYoMDBaIiBmaWxsPSIjMzEzMDk1Ii8+CiAgCiAgPCEtLSBQb2QgU2VhdCAtLT4KICA8cGF0aCBkPSJNNTAgMzUwQzUwIDMwMCAxNTAgMjUwIDI1MCAyNTBDMzUwIDI1MCA0NTAgMzAwIDQ1MCAzNTBWNDc1QzQ1MCA0NzUgMzUwIDUyNSAyNTAgNTI1QzE1MCA1MjUgNTAgNDc1IDUwIDQ3NVYzNTBaIiBmaWxsPSIjMTBCOTgxIi8+CiAgCiAgPCEtLSBQb2QgSGVhZHJlc3QgLS0+CiAgPHBhdGggZD0iTTE1MCAyNzVDMTUwIDI1MCAyMDAgMjI1IDI1MCAyMjVDMzAwIDIyNSAzNTAgMjUwIDM1MCAyNzVWMzI1QzM1MCAzMjUgMzAwIDM1MCAyNTAgMzUwQzIwMCAzNTAgMTUwIDMyNSAxNTAgMzI1VjI3NVoiIGZpbGw9IiMxMEI5ODEiLz4KICA8IS0tIFBvZCBBcm1yZXN0IC0tPgogIDxwYXRoIGQ9Ik01MCA0MjVDNTAgNDI1IDc1IDQyNSA3NSA0MDAgVjM3NUMgNzUgMzUwIDEwMCAzNTAgMTI1IDM1MCBMMTUwIDM1MEMxNzUgMzUwIDIwMCAzNTAgMjAwIDM3NVY0MjVDMjAwIDQyNSAxNzUgNDUwIDE1MCA0NTBMMTI1IDQ1MEMxMDAgNDUwIDc1IDQ1MCA3NSA0MjVMNTAgNDI1WiIgZmlsbD0iIzEwQjk4MSIvPgogIDxwYXRoIGQ9Ik00NTAgNDI1QzQ1MCA0MjUgNDI1IDQyNSA0MjUgNDAwIFYzNzVDIDQyNSAzNTAgNDAwIDM1MCAzNzUgMzUwIEwzNTAgMzUwQzMyNSAzNTAgMzAwIDM1MCAzMDAgMzc1VjQyNUMzMDAgNDI1IDMyNSA0NTAgMzUwIDQ1MEwzNzUgNDUwQzQwMCA0NTAgNDI1IDQ1MCA0MjUgNDI1TDQ1MCA0MjVaIiBmaWxsPSIjMTBCOTgxIi8+CiAgCiAgPCEtLSBQb2QgU3BlY3MgLS0+CiAgPGNpcmNsZSBjeD0iNjAwIiBjeT0iMTAwIiByPSIyMCIgZmlsbD0iIzRGNDZFNSIvPgogIDxsaW5lIHgxPSI2MzAiIHkxPSIxMDAiIHgyPSI3NTAiIHkyPSIxMDAiIHN0cm9rZT0iIzRGNDZFNSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgCiAgPGNpcmNsZSBjeD0iNjAwIiBjeT0iMTYwIiByPSIyMCIgZmlsbD0iIzRGNDZFNSIvPgogIDxsaW5lIHgxPSI2MzAiIHkxPSIxNjAiIHgyPSI3NTAiIHkyPSIxNjAiIHN0cm9rZT0iIzRGNDZFNSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgCiAgPGNpcmNsZSBjeD0iNjAwIiBjeT0iMjIwIiByPSIyMCIgZmlsbD0iIzRGNDZFNSIvPgogIDxsaW5lIHgxPSI2MzAiIHkxPSIyMjAiIHgyPSI3NTAiIHkyPSIyMjAiIHN0cm9rZT0iIzRGNDZFNSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgCiAgPGNpcmNsZSBjeD0iNjAwIiBjeT0iMjgwIiByPSIyMCIgZmlsbD0iIzRGNDZFNSIvPgogIDxsaW5lIHgxPSI2MzAiIHkxPSIyODAiIHgyPSI3NTAiIHkyPSIyODAiIHN0cm9rZT0iIzRGNDZFNSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgCiAgPGNpcmNsZSBjeD0iNjAwIiBjeT0iMzQwIiByPSIyMCIgZmlsbD0iIzRGNDZFNSIvPgogIDxsaW5lIHgxPSI2MzAiIHkxPSIzNDAiIHgyPSI3NTAiIHkyPSIzNDAiIHN0cm9rZT0iIzRGNDZFNSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgCiAgPCEtLSBQb2QgU3BlYyBUZXh0IC0tPgogIDx0ZXh0IHg9IjYwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5FcmdvPC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iMTYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5CaW88L3RleHQ+CiAgPHRleHQgeD0iNjAwIiB5PSIyMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPlNlbnNvcnk8L3RleHQ+CiAgPHRleHQgeD0iNjAwIiB5PSIyODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPkRpc3BsYXk8L3RleHQ+CiAgPHRleHQgeD0iNjAwIiB5PSIzNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPlNpemU8L3RleHQ+CiAgCiAgPCEtLSBDb25uZWN0aW9uIExpbmVzIC0tPgogIDxsaW5lIHgxPSI0NTAiIHkxPSIzMDAiIHgyPSI1ODAiIHkyPSIxMDAiIHN0cm9rZT0iIzRGNDZFNSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtZGFzaGFycmF5PSI0IDQiLz4KICA8bGluZSB4MT0iMzUwIiB5MT0iMjUwIiB4Mj0iNTgwIiB5Mj0iMTYwIiBzdHJva2U9IiM0RjQ2RTUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWRhc2hhcnJheT0iNCA0Ii8+CiAgPGxpbmUgeDE9IjIwMCIgeTE9IjM1MCIgeDI9IjU4MCIgeTI9IjIyMCIgc3Ryb2tlPSIjNEY0NkU1IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNCIvPgogIDxsaW5lIHgxPSIxMDAiIHkxPSI0MDAiIHgyPSI1ODAiIHkyPSIyODAiIHN0cm9rZT0iIzRGNDZFNSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtZGFzaGFycmF5PSI0IDQiLz4KICA8bGluZSB4MT0iMjUwIiB5MT0iNTAwIiB4Mj0iNTgwIiB5Mj0iMzQwIiBzdHJva2U9IiM0RjQ2RTUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWRhc2hhcnJheT0iNCA0Ii8+CiAgCiAgPCEtLSBQb2QgR2xvdyAtLT4KICA8ZWxsaXBzZSBjeD0iMjUwIiBjeT0iNTUwIiByeD0iMjUwIiByeT0iMjAiIGZpbGw9IiMwMDAwMDAiIGZpbGwtb3BhY2l0eT0iMC4yIi8+Cjwvc3ZnPgo=" alt="NeoroVita Pod Technical Specifications" class="specs-main-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="experience-overlay"></div>
+        <div class="experience-container">
+            <h2>The NeoroVita Experience</h2>
+            <p>Step into a new dimension of wellness with the NeoroVita Pod's immersive experience. From the moment you enter the pod, you'll be guided through a personalized journey designed to reduce stress, enhance mental clarity, and restore your natural balance.</p>
+            <div class="experience-cards">
+                <div class="experience-card">
+                    <div class="experience-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </div>
+                    <h3>Initial Assessment</h3>
+                    <p>A comprehensive biometric scan establishes your baseline stress levels and identifies areas for focus.</p>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </div>
+                    <h3>Personalized Program</h3>
+                    <p>Based on your assessment, the pod creates a tailored wellness session combining multiple therapies.</p>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="6" x2="12" y2="12"></line>
+                            <line x1="12" y1="18" x2="12" y2="18"></line>
+                        </svg>
+                    </div>
+                    <h3>Guided Journey</h3>
+                    <p>The interactive display guides you through breathing exercises, meditation, and mindfulness practices.</p>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </div>
+                    <h3>Multi-Sensory Therapy</h3>
+                    <p>Experience the synchronization of light, sound, scent, and subtle vibration to activate your relaxation response.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="section-title">
+            <h2>What Users Are Saying</h2>
+            <p>Hear from organizations and individuals who have integrated the NeoroVita Pod into their wellness routines.</p>
+        </div>
+        <div class="testimonial-container">
+            <div class="testimonial-card">
+                <span class="testimonial-quote-icon">❝</span>
+                <p class="testimonial-quote">"We installed three NeoroVita Pods in our corporate wellness center, and the response has been overwhelming. Employees report reduced stress levels, improved focus, and better emotional resilience. The return on investment has been clear—fewer sick days and higher productivity across teams that regularly use the pods."</p>
+                <p class="testimonial-author">Jennifer Chang</p>
+                <p class="testimonial-role">Director of Employee Wellness, Fortune 500 Company</p>
+            </div>
+            <div class="testimonial-pagination">
+                <div class="testimonial-dot active"></div>
+                <div class="testimonial-dot"></div>
+                <div class="testimonial-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="section-title">
+            <h2>Choose Your NeoroVita Pod</h2>
+            <p>Select the perfect configuration to meet your wellness needs.</p>
+        </div>
+        <div class="pricing-tiers">
+            <div class="pricing-tier">
+                <div class="pricing-header">
+                    <h3 class="pricing-name">Essential</h3>
+                    <div class="pricing-price">$2,499</div>
+                    <div class="pricing-period">One-time purchase</div>
+                </div>
+                <div class="pricing-features">
+                    <ul class="pricing-feature-list">
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Core biometric monitoring
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Light therapy & sound healing
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            10" touchscreen interface
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            3 wellness programs
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            1-year limited warranty
+                        </li>
+                    </ul>
+                </div>
+                <div class="pricing-cta">
+                    <a href="#contact" class="pricing-button">Pre-Order Now</a>
+                </div>
+            </div>
+            <div class="pricing-tier featured">
+                <div class="pricing-header">
+                    <h3 class="pricing-name">Professional</h3>
+                    <div class="pricing-price">$3,999</div>
+                    <div class="pricing-period">One-time purchase</div>
+                </div>
+                <div class="pricing-features">
+                    <ul class="pricing-feature-list">
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Advanced biometric array
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Full multi-sensory experience
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            12.9" premium touchscreen
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            20+ wellness programs
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            3-year extended warranty
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Multi-user profiles
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Priority support
+                        </li>
+                    </ul>
+                </div>
+                <div class="pricing-cta">
+                    <a href="#contact" class="pricing-button">Pre-Order Now</a>
+                </div>
+            </div>
+            <div class="pricing-tier">
+                <div class="pricing-header">
+                    <h3 class="pricing-name">Enterprise</h3>
+                    <div class="pricing-price">Custom</div>
+                    <div class="pricing-period">Contact for pricing</div>
+                </div>
+                <div class="pricing-features">
+                    <ul class="pricing-feature-list">
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Everything in Professional
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Multiple pod deployment
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Advanced analytics dashboard
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Custom branding options
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            API integration capabilities
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            On-site installation & training
+                        </li>
+                        <li class="pricing-feature">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Dedicated account manager
+                        </li>
+                    </ul>
+                </div>
+                <div class="pricing-cta">
+                    <a href="#contact" class="pricing-button">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-blob cta-blob-1"></div>
+        <div class="cta-blob cta-blob-2"></div>
+        <h2>Transform Your Wellness Program</h2>
+        <p>Join the growing number of forward-thinking organizations that are revolutionizing their approach to stress management and employee wellness with the NeoroVita Pod.</p>
+        <a href="#contact" class="cta-button">Schedule a Demo</a>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions about the NeoroVita Pod.</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item active">
+                <div class="faq-question">
+                    How much space is required for the NeoroVita Pod?
+                    <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>The NeoroVita Pod has a compact footprint of approximately 4.5' x 4.5' with a height of 5.5'. We recommend allowing at least 1-2 feet of additional space around the pod for easy access. The pod can be placed against a wall to save space if needed.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How long does a typical wellness session last?
+                    <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>A standard session ranges from 10-25 minutes, depending on the selected program and your specific wellness needs. Quick 5-minute stress relief sessions are also available for busy environments, while comprehensive wellness assessments may take up to 30 minutes.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can the pod be used by multiple people?
+                    <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, the NeoroVita Pod is designed to support multiple user profiles, making it ideal for families, offices, and wellness centers. Each user can create their own profile, which saves their preferences, wellness history, and personalized programs. The Professional and Enterprise models allow for unlimited user profiles.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What maintenance is required for the pod?
+                    <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>The NeoroVita Pod is designed for minimal maintenance. Regular upkeep includes wiping down surfaces with the provided cleaning kit, replacing the aromatherapy cartridges every 2-3 months (depending on usage), and keeping the software updated through the automatic update system. We recommend a professional check-up once a year, which is included in our maintenance plans.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Is any special electrical setup required?
+                    <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    <p>The NeoroVita Pod operates on standard 110-240V electricity and can be plugged into a regular wall outlet. It consumes approximately the same amount of power as a desktop computer. For the Enterprise model with multiple pods, we provide consultation on optimal electrical setup for your specific environment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-about">
+                <a class="footer-logo">Neoro<span>Vita</span></a>
+                <p>Innovative wellness technology designed to help you manage stress and improve your overall health and wellbeing.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links-container">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#specifications">Specifications</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-container">
+                <h3 class="footer-title">Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">White Papers</a></li>
+                    <li><a href="#">Research Studies</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">User Manuals</a></li>
+                    <li><a href="#">Support Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3 class="footer-title">Contact Us</h3>
+                <p>Interested in learning more about the NeoroVita Pod? Fill out the form and our team will get back to you shortly.</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address">
+                    <button type="submit" class="newsletter-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 NeoroVita Pod. All rights reserved. Designed with 💙 for global wellness.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav ul');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Header Scroll Effect
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.style.padding = '1rem 10%';
+                header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.padding = '1.5rem 10%';
+                header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
+            }
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                if (nav.style.display === 'flex' && window.innerWidth <= 768) {
+                    nav.style.display = 'none';
+                }
+            });
+        });
+
+        // Simple Testimonial Carousel
+        const dots = document.querySelectorAll('.testimonial-dot');
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                dots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+                
+                // In a real implementation, this would switch testimonials
+                const testimonials = [
+                    {
+                        quote: "We installed three NeoroVita Pods in our corporate wellness center, and the response has been overwhelming. Employees report reduced stress levels, improved focus, and better emotional resilience. The return on investment has been clear—fewer sick days and higher productivity across teams that regularly use the pods.",
+                        author: "Jennifer Chang",
+                        role: "Director of Employee Wellness, Fortune 500 Company"
+                    },
+                    {
+                        quote: "As a clinical psychologist, I've seen remarkable results integrating the NeoroVita Pod into our therapy programs. Patients with anxiety and stress-related conditions show measurable improvement in emotional regulation after just a few sessions. The biometric data helps us tailor treatments more effectively.",
+                        author: "Dr. Michael Reeves",
+                        role: "Clinical Director, Center for Emotional Health"
+                    },
+                    {
+                        quote: "Our university implemented NeoroVita Pods across campus, and they've become an essential resource for students, especially during exam periods. The data shows a significant correlation between pod usage and improved academic performance. It's been one of our most successful wellness initiatives.",
+                        author: "Sarah Williamson",
+                        role: "Student Wellness Coordinator, State University"
+                    }
+                ];
+                
+                const card = document.querySelector('.testimonial-card');
+                card.style.opacity = 0;
+                
+                setTimeout(() => {
+                    card.querySelector('.testimonial-quote').textContent = testimonials[index].quote;
+                    card.querySelector('.testimonial-author').textContent = testimonials[index].author;
+                    card.querySelector('.testimonial-role').textContent = testimonials[index].role;
+                    card.style.opacity = 1;
+                }, 300);
+            });
+        });
+
+        // Feature Cards Animation
+        const featureCards = document.querySelectorAll('.feature-card');
+        
+        const observerOptions = {
+            threshold: 0.2
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        featureCards.forEach((card, index) => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            card.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        // Experience Cards Animation
+        const experienceCards = document.querySelectorAll('.experience-card');
+        
+        experienceCards.forEach((card, index) => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            card.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all FAQs
+                faqItems.forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                // If the clicked item wasn't active, make it active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Contact Form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const input = newsletterForm.querySelector('.newsletter-input');
+            
+            if (input.value) {
+                // In real implementation, this would send the email to a server
+                alert('Thank you for your interest! Our team will contact you soon about the NeoroVita Pod.');
+                input.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
